@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>A Small Question 💭</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            text-align: center;
+            background: linear-gradient(to right, #a18cd1, #fbc2eb);
+            color: #333;
+        }
+
+        h1 {
+            margin-top: 50px;
+            color: #6a5acd;
+        }
+
+        .card {
+            background: white;
+            margin: 30px auto;
+            padding: 20px;
+            border-radius: 20px;
+            width: 85%;
+            max-width: 350px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .yes {
+            background: #6a5acd;
+            color: white;
+        }
+
+        .no {
+            background: #ccc;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        /* 💕 floating hearts */
+        .heart {
+            position: absolute;
+            color: #ff4d6d;
+            animation: float 5s linear infinite;
+        }
+
+        @keyframes float {
+            0% {transform: translateY(100vh);}
+            100% {transform: translateY(-10vh);}
+        }
+    </style>
+
+</head>
+<body>
+
+    <h1>Hey Maran 💫</h1>
+
+    <div class="card">
+
+        <p style="font-size:18px;">
+            I just wanted to ask something... 😊
+        </p>
+
+        <p style="font-size:20px;">
+            Do you like me? 💖
+        </p>
+
+        <button class="yes" onclick="yesClick()">Yes 😊</button>
+        <button class="no" onclick="noClick()">No 😅</button>
+
+        <div class="result" id="result"></div>
+
+    </div>
+
+    <script>
+        function yesClick() {
+            document.getElementById("result").innerHTML =
+                "Aww 💖 that really made me smile 😊✨";
+        }
+
+        function noClick() {
+            document.getElementById("result").innerHTML =
+                "It's okay 😊 thanks for being honest 🌸";
+        }
+
+        // 💕 hearts animation
+        setInterval(() => {
+            let heart = document.createElement("div");
+            heart.className = "heart";
+            heart.innerHTML = "💖";
+            heart.style.left = Math.random() * 100 + "vw";
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }, 400);
+    </script>
+
+</body>
+</html>
