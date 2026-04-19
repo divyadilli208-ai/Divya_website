@@ -1,114 +1,329 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>A Small Question 💭</title>
+<title>Birthday Surprise</title>
 
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', sans-serif;
-            text-align: center;
-            background: linear-gradient(to right, #a18cd1, #fbc2eb);
-            color: #333;
-        }
+<style>
+body{
+    margin:0;
+    background:black;
+    overflow:hidden;
+    font-family: Arial;
+    text-align:center;
+    color:white;
+}
 
-        h1 {
-            margin-top: 50px;
-            color: #6a5acd;
-        }
+/* ❤️ Floating hearts */
+.heart{
+    position:absolute;
+    color:red;
+    font-size:20px;
+    animation:float 6s linear infinite;
+    z-index:3;
+    cursor:pointer;
+}
 
-        .card {
-            background: white;
-            margin: 30px auto;
-            padding: 20px;
-            border-radius: 20px;
-            width: 85%;
-            max-width: 350px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
+@keyframes float{
+    0%{ top:100%; opacity:1; }
+    100%{ top:-10%; opacity:0; }
+}
 
-        button {
-            padding: 10px 20px;
-            margin: 10px;
-            border-radius: 20px;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-        }
+#hey{
+    position:absolute;
+    top:10%;
+    width:100%;
+    font-size:34px;
+    font-weight:bold;
+    animation:glow 1s infinite alternate;
+}
 
-        .yes {
-            background: #6a5acd;
-            color: white;
-        }
+@keyframes glow{
+    from{ text-shadow:0 0 10px white; }
+    to{ text-shadow:0 0 25px pink; }
+}
 
-        .no {
-            background: #ccc;
-        }
+#msg{
+    position:absolute;
+    top:40%;
+    width:100%;
+    font-size:22px;
+}
 
-        .result {
-            margin-top: 20px;
-            font-size: 18px;
-        }
+/* 💌 Letter */
+.letter{
+    display:none;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    font-size:90px;
+    cursor:pointer;
+}
 
-        /* 💕 floating hearts */
-        .heart {
-            position: absolute;
-            color: #ff4d6d;
-            animation: float 5s linear infinite;
-        }
+/* ❤️ HEART */
+.big-heart{
+    display:none;
+    position:absolute;
+    top:50%;
+    left:50%;
+    width:280px;
+    height:280px;
+    background:red;
+    transform:translate(-50%,-50%) rotate(-45deg) scale(0);
+    box-shadow:0 0 40px red;
+    z-index:1;
 
-        @keyframes float {
-            0% {transform: translateY(100vh);}
-            100% {transform: translateY(-10vh);}
-        }
-    </style>
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
 
+.big-heart::before,
+.big-heart::after{
+    content:"";
+    position:absolute;
+    width:280px;
+    height:280px;
+    background:red;
+    border-radius:50%;
+}
+
+.big-heart::before{
+    top:-140px;
+    left:0;
+}
+
+.big-heart::after{
+    left:140px;
+    top:0;
+}
+
+.show{
+    animation:zoom 0.8s forwards;
+}
+
+@keyframes zoom{
+    from{ transform:translate(-50%,-50%) rotate(-45deg) scale(0); }
+    to{ transform:translate(-50%,-50%) rotate(-45deg) scale(1); }
+}
+
+/* 💖 TEXT */
+.heart-text{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%) rotate(45deg);
+    width:200px;
+    font-size:22px;
+    font-weight:bold;
+    text-align:center;
+    line-height:1.6;
+    color:white;
+    z-index:5;
+    text-shadow:0 0 10px black, 0 0 20px black;
+}
+
+/* buttons */
+#clickBtn, #photoBtn{
+    display:none;
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    padding:12px 20px;
+    font-size:16px;
+    background:white;
+    color:black;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+#clickBtn{ top:75%; }
+#photoBtn{ top:85%; }
+
+/* FINAL MESSAGE */
+#finalMsg{
+    display:none;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:85%;
+    max-width:400px;
+    padding:20px;
+    background:rgba(255,0,80,0.15);
+    border:2px solid rgba(255,255,255,0.3);
+    border-radius:20px;
+    backdrop-filter:blur(8px);
+}
+
+/* PHOTOS */
+#gallery{
+    display:none;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+}
+
+#gallery img{
+    width:250px;
+    height:250px;
+    border-radius:20px;
+    display:none;
+    box-shadow:0 0 20px white;
+    animation:fade 2s;
+}
+
+@keyframes fade{
+    from{opacity:0;}
+    to{opacity:1;}
+}
+
+/* 🔥 FINAL TEXT */
+#endText{
+    position:absolute;
+    bottom:-60px;
+    width:100%;
+    text-align:center;
+    font-size:24px;
+    font-weight:bold;
+    color:white;
+    text-shadow:0 0 20px pink;
+    display:none;
+}
+
+/* 🆕 INSTRUCTION TEXT */
+#hintText{
+    position:absolute;
+    top:-50px;
+    width:100%;
+    text-align:center;
+    font-size:18px;
+    color:white;
+    opacity:0.8;
+}
+</style>
 </head>
+
 <body>
 
-    <h1>Hey Maran 💫</h1>
+<div id="hey">Hey Maran 💖</div>
+<div id="msg">❤️ Touch the heart... I have a surprise 😍</div>
 
-    <div class="card">
+<div id="letter" class="letter" onclick="openLetter()">💌</div>
 
-        <p style="font-size:18px;">
-            I just wanted to ask something... 😊
-        </p>
+<div id="bigHeart" class="big-heart">
+    <div id="text" class="heart-text"></div>
+</div>
 
-        <p style="font-size:20px;">
-            Do you like me? 💖
-        </p>
+<button id="clickBtn" onclick="showFinal()">Click Here 💙</button>
+<button id="photoBtn" onclick="showPhotos()">See Memories 📸</button>
 
-        <button class="yes" onclick="yesClick()">Yes 😊</button>
-        <button class="no" onclick="noClick()">No 😅</button>
+<div id="finalMsg">
+<h3>💖 Special Message 💖</h3>
 
-        <div class="result" id="result"></div>
+In college, the best person I got is you Maran ❤<br><br>
+I like you a lot 😇 thank you for being a good friend 🙂<br><br>
+You will reach big success. God is always with you ❤️<br><br>
+I will never forget you... Happy Birthday 🦇 Batman ❤️
+</div>
 
-    </div>
+<!-- 🔥 GALLERY -->
+<div id="gallery">
 
-    <script>
-        function yesClick() {
-            document.getElementById("result").innerHTML =
-                "Aww 💖 that really made me smile 😊✨";
+    <!-- 🆕 ADDED LINE -->
+    <div id="hintText">Touch any heart ❤️… there’s a surprise waiting for you 🎉🎁</div>
+
+    <img id="img1" src="https://i.postimg.cc/vZYdN0kV/file-00000000f6c872069c1de9cd9c518c1e.jpg">
+    <img id="img2" src="https://i.postimg.cc/vZYdN0kV/file-00000000f6c872069c1de9cd9c518c1e.jpg">
+    <img id="img3" src="https://i.postimg.cc/vZYdN0kV/file-00000000f6c872069c1de9cd9c518c1e.jpg">
+
+    <div id="endText">💖 Once again Happy Birthday Maran ❤️</div>
+</div>
+
+<audio id="song" src="song.mp3"></audio>
+
+<script>
+
+/* hearts */
+function createHeart(){
+    let h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="❤️";
+    h.style.left=Math.random()*100+"vw";
+    h.onclick = stopFlow;
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
+}
+setInterval(createHeart,200);
+
+/* stop */
+function stopFlow(){
+    document.getElementById("msg").style.display="none";
+    document.getElementById("letter").style.display="block";
+}
+
+/* typing */
+let text="💖 Happy Birthday\nMaran ❤️\n\n🦇 Cutey Batmaran 🦇";
+let i=0;
+
+function type(){
+    let t=document.getElementById("text");
+    if(i<text.length){
+        t.innerHTML += text[i]==="\n"?"<br>":text[i];
+        i++;
+        setTimeout(type,50);
+    }else{
+        document.getElementById("clickBtn").style.display="block";
+    }
+}
+
+/* open */
+function openLetter(){
+    document.getElementById("letter").style.display="none";
+    let h=document.getElementById("bigHeart");
+    h.style.display="block";
+    h.classList.add("show");
+    type();
+}
+
+/* final */
+function showFinal(){
+    document.getElementById("bigHeart").style.display="none";
+    document.getElementById("clickBtn").style.display="none";
+    document.getElementById("finalMsg").style.display="block";
+    document.getElementById("photoBtn").style.display="block";
+}
+
+/* photos */
+function showPhotos(){
+    document.getElementById("finalMsg").style.display="none";
+    document.getElementById("photoBtn").style.display="none";
+    document.getElementById("gallery").style.display="block";
+
+    document.getElementById("song").play();
+
+    let imgs=["img1","img2","img3"];
+    let index=0;
+
+    function slide(){
+        imgs.forEach(id=>document.getElementById(id).style.display="none");
+
+        document.getElementById(imgs[index]).style.display="block";
+
+        if(index === imgs.length - 1){
+            document.getElementById("endText").style.display="block";
         }
 
-        function noClick() {
-            document.getElementById("result").innerHTML =
-                "It's okay 😊 thanks for being honest 🌸";
-        }
+        index=(index+1)%imgs.length;
+    }
 
-        // 💕 hearts animation
-        setInterval(() => {
-            let heart = document.createElement("div");
-            heart.className = "heart";
-            heart.innerHTML = "💖";
-            heart.style.left = Math.random() * 100 + "vw";
-            document.body.appendChild(heart);
+    slide();
+    setInterval(slide,2500);
+}
 
-            setTimeout(() => {
-                heart.remove();
-            }, 5000);
-        }, 400);
-    </script>
+</script>
 
 </body>
 </html>
