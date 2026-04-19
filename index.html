@@ -13,11 +13,30 @@ body{
     color:white;
 }
 
-/* ❤️ Floating hearts */
+/* 🆕 START HEART */
+#startHeart{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    font-size:150px;
+    cursor:pointer;
+    animation:shake 1s infinite;
+}
+
+@keyframes shake{
+    0%{ transform:translate(-50%,-50%) rotate(0deg); }
+    25%{ transform:translate(-50%,-50%) rotate(10deg); }
+    50%{ transform:translate(-50%,-50%) rotate(-10deg); }
+    75%{ transform:translate(-50%,-50%) rotate(10deg); }
+    100%{ transform:translate(-50%,-50%) rotate(0deg); }
+}
+
+/* ❤️ BIG FLOATING HEARTS */
 .heart{
     position:absolute;
     color:red;
-    font-size:20px;
+    font-size:35px; /* 🔥 increased */
     animation:float 6s linear infinite;
     z-index:3;
     cursor:pointer;
@@ -32,9 +51,10 @@ body{
     position:absolute;
     top:10%;
     width:100%;
-    font-size:34px;
+    font-size:60px;
     font-weight:bold;
     animation:glow 1s infinite alternate;
+    display:none;
 }
 
 @keyframes glow{
@@ -46,7 +66,8 @@ body{
     position:absolute;
     top:40%;
     width:100%;
-    font-size:22px;
+    font-size:35px;
+    display:none;
 }
 
 /* 💌 Letter */
@@ -56,7 +77,7 @@ body{
     top:50%;
     left:50%;
     transform:translate(-50%,-50%);
-    font-size:90px;
+    font-size:110px;
     cursor:pointer;
 }
 
@@ -66,11 +87,11 @@ body{
     position:absolute;
     top:50%;
     left:50%;
-    width:280px;
-    height:280px;
+    width:450px;
+    height:450px;
     background:red;
     transform:translate(-50%,-50%) rotate(-45deg) scale(0);
-    box-shadow:0 0 40px red;
+    box-shadow:0 0 60px red;
     z-index:1;
 
     display:flex;
@@ -82,19 +103,19 @@ body{
 .big-heart::after{
     content:"";
     position:absolute;
-    width:280px;
-    height:280px;
+    width:450px;
+    height:450px;
     background:red;
     border-radius:50%;
 }
 
 .big-heart::before{
-    top:-140px;
+    top:-225px;
     left:0;
 }
 
 .big-heart::after{
-    left:140px;
+    left:225px;
     top:0;
 }
 
@@ -113,14 +134,13 @@ body{
     top:50%;
     left:50%;
     transform:translate(-50%,-50%) rotate(45deg);
-    width:200px;
-    font-size:22px;
+    width:300px;
+    font-size:34px;
     font-weight:bold;
     text-align:center;
     line-height:1.6;
     color:white;
     z-index:5;
-    text-shadow:0 0 10px black, 0 0 20px black;
 }
 
 /* buttons */
@@ -129,8 +149,8 @@ body{
     position:absolute;
     left:50%;
     transform:translateX(-50%);
-    padding:12px 20px;
-    font-size:16px;
+    padding:15px 25px;
+    font-size:20px;
     background:white;
     color:black;
     border:none;
@@ -148,13 +168,14 @@ body{
     top:50%;
     left:50%;
     transform:translate(-50%,-50%);
-    width:85%;
-    max-width:400px;
-    padding:20px;
+    width:95%;
+    max-width:500px;
+    padding:25px;
     background:rgba(255,0,80,0.15);
     border:2px solid rgba(255,255,255,0.3);
     border-radius:20px;
     backdrop-filter:blur(8px);
+    font-size:22px;
 }
 
 /* PHOTOS */
@@ -167,17 +188,11 @@ body{
 }
 
 #gallery img{
-    width:250px;
-    height:250px;
+    width:360px;
+    height:360px;
     border-radius:20px;
     display:none;
-    box-shadow:0 0 20px white;
-    animation:fade 2s;
-}
-
-@keyframes fade{
-    from{opacity:0;}
-    to{opacity:1;}
+    box-shadow:0 0 30px white;
 }
 
 /* 🔥 FINAL TEXT */
@@ -186,27 +201,18 @@ body{
     bottom:-60px;
     width:100%;
     text-align:center;
-    font-size:24px;
+    font-size:32px;
     font-weight:bold;
     color:white;
-    text-shadow:0 0 20px pink;
+    text-shadow:0 0 25px pink;
     display:none;
-}
-
-/* 🆕 INSTRUCTION TEXT */
-#hintText{
-    position:absolute;
-    top:-50px;
-    width:100%;
-    text-align:center;
-    font-size:18px;
-    color:white;
-    opacity:0.8;
 }
 </style>
 </head>
 
 <body>
+
+<div id="startHeart" onclick="startOpen()">💖</div>
 
 <div id="hey">Hey Maran 💖</div>
 <div id="msg">❤️ Touch the heart... I have a surprise 😍</div>
@@ -229,24 +235,23 @@ You will reach big success. God is always with you ❤️<br><br>
 I will never forget you... Happy Birthday 🦇 Batman ❤️
 </div>
 
-<!-- 🔥 GALLERY -->
 <div id="gallery">
+<img id="img1" src="https://i.postimg.cc/vZYdN0kV/file-00000000f6c872069c1de9cd9c518c1e.jpg">
+<img id="img2" src="https://i.postimg.cc/vZYdN0kV/file-00000000f6c872069c1de9cd9c518c1e.jpg">
+<img id="img3" src="https://i.postimg.cc/vZYdN0kV/file-00000000f6c872069c1de9cd9c518c1e.jpg">
 
-    <!-- 🆕 ADDED LINE -->
-    <div id="hintText">Touch any heart ❤️… there’s a surprise waiting for you 🎉🎁</div>
-
-    <img id="img1" src="https://i.postimg.cc/vZYdN0kV/file-00000000f6c872069c1de9cd9c518c1e.jpg">
-    <img id="img2" src="https://i.postimg.cc/vZYdN0kV/file-00000000f6c872069c1de9cd9c518c1e.jpg">
-    <img id="img3" src="https://i.postimg.cc/vZYdN0kV/file-00000000f6c872069c1de9cd9c518c1e.jpg">
-
-    <div id="endText">💖 Once again Happy Birthday Maran ❤️</div>
+<div id="endText">💖 Once again Happy Birthday Maran ❤️</div>
 </div>
-
-<audio id="song" src="song.mp3"></audio>
 
 <script>
 
-/* hearts */
+function startOpen(){
+    document.getElementById("startHeart").style.display="none";
+    document.getElementById("hey").style.display="block";
+    document.getElementById("msg").style.display="block";
+}
+
+/* BIG hearts */
 function createHeart(){
     let h=document.createElement("div");
     h.className="heart";
@@ -258,13 +263,11 @@ function createHeart(){
 }
 setInterval(createHeart,200);
 
-/* stop */
 function stopFlow(){
     document.getElementById("msg").style.display="none";
     document.getElementById("letter").style.display="block";
 }
 
-/* typing */
 let text="💖 Happy Birthday\nMaran ❤️\n\n🦇 Cutey Batmaran 🦇";
 let i=0;
 
@@ -279,7 +282,6 @@ function type(){
     }
 }
 
-/* open */
 function openLetter(){
     document.getElementById("letter").style.display="none";
     let h=document.getElementById("bigHeart");
@@ -288,7 +290,6 @@ function openLetter(){
     type();
 }
 
-/* final */
 function showFinal(){
     document.getElementById("bigHeart").style.display="none";
     document.getElementById("clickBtn").style.display="none";
@@ -296,20 +297,16 @@ function showFinal(){
     document.getElementById("photoBtn").style.display="block";
 }
 
-/* photos */
 function showPhotos(){
     document.getElementById("finalMsg").style.display="none";
     document.getElementById("photoBtn").style.display="none";
     document.getElementById("gallery").style.display="block";
-
-    document.getElementById("song").play();
 
     let imgs=["img1","img2","img3"];
     let index=0;
 
     function slide(){
         imgs.forEach(id=>document.getElementById(id).style.display="none");
-
         document.getElementById(imgs[index]).style.display="block";
 
         if(index === imgs.length - 1){
