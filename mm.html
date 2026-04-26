@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Birthday Surprise</title>
+
+<style>
+body{
+    margin:0;
+    background:black;
+    overflow:hidden;
+    font-family: Arial;
+    text-align:center;
+    color:white;
+}
+
+/* START HEART */
+#startHeart{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    font-size:150px;
+    cursor:pointer;
+    animation:shake 1s infinite;
+}
+
+@keyframes shake{
+    0%{ transform:translate(-50%,-50%) rotate(0deg); }
+    50%{ transform:translate(-50%,-50%) rotate(10deg); }
+    100%{ transform:translate(-50%,-50%) rotate(0deg); }
+}
+
+/* FLOAT HEARTS */
+.heart{
+    position:absolute;
+    color:red;
+    font-size:35px;
+    animation:float 6s linear infinite;
+    z-index:3;
+    cursor:pointer;
+}
+
+@keyframes float{
+    0%{ top:100%; opacity:1; }
+    100%{ top:-10%; opacity:0; }
+}
+
+#hey{
+    position:absolute;
+    top:10%;
+    width:100%;
+    font-size:60px;
+    font-weight:bold;
+    display:none;
+}
+
+#msg{
+    position:absolute;
+    top:40%;
+    width:100%;
+    font-size:35px;
+    display:none;
+}
+
+/* LETTER */
+.letter{
+    display:none;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    font-size:110px;
+    cursor:pointer;
+}
+
+/* BIG HEART */
+.big-heart{
+    display:none;
+    position:absolute;
+    top:50%;
+    left:50%;
+    width:450px;
+    height:450px;
+    background:red;
+    transform:translate(-50%,-50%) rotate(-45deg) scale(0);
+    box-shadow:0 0 60px red;
+    align-items:center;
+    justify-content:center;
+}
+
+.big-heart::before,
+.big-heart::after{
+    content:"";
+    position:absolute;
+    width:450px;
+    height:450px;
+    background:red;
+    border-radius:50%;
+}
+
+.big-heart::before{ top:-225px; }
+.big-heart::after{ left:225px; }
+
+.show{
+    display:flex;
+    animation:zoom 0.8s forwards;
+}
+
+@keyframes zoom{
+    from{ transform:translate(-50%,-50%) rotate(-45deg) scale(0); }
+    to{ transform:translate(-50%,-50%) rotate(-45deg) scale(1); }
+}
+
+/* HEART TEXT */
+.heart-text{
+    transform:rotate(45deg);
+    width:300px;
+    font-size:34px;
+}
+
+/* BUTTON */
+#clickBtn, #photoBtn{
+    display:none;
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    padding:15px 25px;
+    font-size:20px;
+    background:white;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+#clickBtn{ top:75%; }
+#photoBtn{ top:85%; }
+
+/* 📜 SCROLL STYLE */
+#scrollBox{
+    display:none;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%) scaleY(0);
+    transform-origin:top;
+}
+
+.scroll-content{
+    background:#f5e6c8;
+    color:black;
+    padding:25px;
+    width:320px;
+    font-size:20px;
+    border-left:8px solid #8b5a2b;
+    border-right:8px solid #8b5a2b;
+    box-shadow:0 0 25px rgba(0,0,0,0.6);
+}
+
+.scroll-top, .scroll-bottom{
+    width:320px;
+    height:30px;
+    background:#8b5a2b;
+    border-radius:20px;
+}
+
+.scroll-top{ margin-bottom:-5px; }
+.scroll-bottom{ margin-top:-5px; }
+
+.roll{
+    animation:rollOpen 1.5s forwards;
+}
+
+@keyframes rollOpen{
+    from{ transform:translate(-50%,-50%) scaleY(0); }
+    to{ transform:translate(-50%,-50%) scaleY(1); }
+}
+
+/* PHOTOS */
+#gallery{
+    display:none;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+}
+
+#gallery img{
+    width:360px;
+    height:360px;
+    border-radius:20px;
+    display:none;
+}
+
+#endText{
+    position:absolute;
+    bottom:-60px;
+    width:100%;
+    font-size:32px;
+    display:none;
+}
+</style>
+</head>
+
+<body>
+
+<div id="startHeart" onclick="startOpen()">💖</div>
+
+<div id="hey">Hey Maran 💖</div>
+<div id="msg">❤️ Touch the heart... I have a surprise 😍</div>
+
+<div id="letter" class="letter" onclick="openLetter()">💌</div>
+
+<div id="bigHeart" class="big-heart">
+    <div id="text" class="heart-text"></div>
+</div>
+
+<button id="clickBtn" onclick="showFinal()">Click Here 💙</button>
+<button id="photoBtn" onclick="showPhotos()">See Memories 📸</button>
+
+<!-- 📜 ONLY CHANGED PART -->
+<div id="scrollBox">
+    <div class="scroll-top"></div>
+
+    <div class="scroll-content">
+        <h3>💖 Special Message 💖</h3>
+
+        In college, the best person I got is you Maran ❤<br><br>
+        I like you a lot 😇 thank you for being a good friend 🙂<br><br>
+        You will reach big success. God is always with you ❤️<br><br>
+        I will never forget you... Happy Birthday 🦇 Batman ❤️
+    </div>
+
+    <div class="scroll-bottom"></div>
+</div>
+
+<div id="gallery">
+<img id="img1" src="https://i.postimg.cc/vZYdN0kV/file-00000000f6c872069c1de9cd9c518c1e.jpg">
+<img id="img2" src="https://i.postimg.cc/vZYdN0kV/file-00000000f6c872069c1de9cd9c518c1e.jpg">
+<img id="img3" src="https://i.postimg.cc/vZYdN0kV/file-00000000f6c872069c1de9cd9c518c1e.jpg">
+
+<div id="endText">💖 Once again Happy Birthday Maran ❤️</div>
+</div>
+
+<script>
+
+function startOpen(){
+    document.getElementById("startHeart").style.display="none";
+    document.getElementById("hey").style.display="block";
+    document.getElementById("msg").style.display="block";
+}
+
+function createHeart(){
+    let h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="❤️";
+    h.style.left=Math.random()*100+"vw";
+    h.onclick = stopFlow;
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
+}
+setInterval(createHeart,200);
+
+function stopFlow(){
+    document.getElementById("msg").style.display="none";
+    document.getElementById("letter").style.display="block";
+}
+
+let text="💖 Happy Birthday\nMaran ❤️\n\n🦇 Cutey Batmaran 🦇";
+let i=0;
+
+function type(){
+    let t=document.getElementById("text");
+    if(i<text.length){
+        t.innerHTML += text[i]==="\n"?"<br>":text[i];
+        i++;
+        setTimeout(type,40);
+    }else{
+        document.getElementById("clickBtn").style.display="block";
+    }
+}
+
+function openLetter(){
+    document.getElementById("letter").style.display="none";
+    let h=document.getElementById("bigHeart");
+    h.classList.add("show");
+    type();
+}
+
+function showFinal(){
+    document.getElementById("bigHeart").style.display="none";
+    document.getElementById("clickBtn").style.display="none";
+
+    let scroll=document.getElementById("scrollBox");
+    scroll.style.display="block";
+    scroll.classList.add("roll"); // 🔥 roll animation
+    document.getElementById("photoBtn").style.display="block";
+}
+
+function showPhotos(){
+    document.getElementById("scrollBox").style.display="none";
+    document.getElementById("photoBtn").style.display="none";
+    document.getElementById("gallery").style.display="block";
+
+    let imgs=["img1","img2","img3"];
+    let index=0;
+
+    function slide(){
+        imgs.forEach(id=>document.getElementById(id).style.display="none");
+        document.getElementById(imgs[index]).style.display="block";
+
+        if(index === imgs.length - 1){
+            document.getElementById("endText").style.display="block";
+        }
+
+        index=(index+1)%imgs.length;
+    }
+
+    slide();
+    setInterval(slide,2500);
+}
+
+</script>
+
+</body>
+</html>
