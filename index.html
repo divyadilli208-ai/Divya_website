@@ -1,326 +1,555 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Birthday Surprise</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Divya Srinivasan | Cyber Security Portfolio</title>
 
 <style>
-body{
-    margin:0;
-    background:black;
-    overflow:hidden;
-    font-family: Arial;
-    text-align:center;
-    color:white;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
-/* 🆕 START HEART */
-#startHeart{
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    font-size:150px;
-    cursor:pointer;
-    animation:shake 1s infinite;
+body {
+    background: #050807;
+    color: #e5ffe9;
+    font-family: Arial, sans-serif;
+    line-height: 1.7;
 }
 
-@keyframes shake{
-    0%{ transform:translate(-50%,-50%) rotate(0deg); }
-    25%{ transform:translate(-50%,-50%) rotate(10deg); }
-    50%{ transform:translate(-50%,-50%) rotate(-10deg); }
-    75%{ transform:translate(-50%,-50%) rotate(10deg); }
-    100%{ transform:translate(-50%,-50%) rotate(0deg); }
+:root {
+    --green: #39ff14;
+    --dark: #0b1510;
+    --text: #b8c9bc;
 }
 
-/* ❤️ BIG FLOATING HEARTS */
-.heart{
-    position:absolute;
-    color:red;
-    font-size:35px; /* 🔥 increased */
-    animation:float 6s linear infinite;
-    z-index:3;
-    cursor:pointer;
+header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: #080e0b;
+    border-bottom: 1px solid #183d25;
+    padding: 18px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-@keyframes float{
-    0%{ top:100%; opacity:1; }
-    100%{ top:-10%; opacity:0; }
+.logo {
+    color: var(--green);
+    font-size: 23px;
+    font-weight: bold;
 }
 
-#hey{
-    position:absolute;
-    top:10%;
-    width:100%;
-    font-size:60px;
-    font-weight:bold;
-    animation:glow 1s infinite alternate;
-    display:none;
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
-@keyframes glow{
-    from{ text-shadow:0 0 10px white; }
-    to{ text-shadow:0 0 25px pink; }
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
 }
 
-#msg{
-    position:absolute;
-    top:40%;
-    width:100%;
-    font-size:35px;
-    display:none;
+nav a:hover {
+    color: var(--green);
 }
 
-/* 💌 Letter */
-.letter{
-    display:none;
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    font-size:110px;
-    cursor:pointer;
+.hero {
+    min-height: 90vh;
+    padding: 100px 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: radial-gradient(circle at 80% 40%, #102719 0%, #050807 55%);
 }
 
-/* ❤️ HEART */
-.big-heart{
-    display:none;
-    position:absolute;
-    top:50%;
-    left:50%;
-    width:450px;
-    height:450px;
-    background:red;
-    transform:translate(-50%,-50%) rotate(-45deg) scale(0);
-    box-shadow:0 0 60px red;
-    z-index:1;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
+.terminal {
+    color: var(--green);
+    font-family: monospace;
+    font-size: 16px;
+    margin-bottom: 20px;
 }
 
-.big-heart::before,
-.big-heart::after{
-    content:"";
-    position:absolute;
-    width:450px;
-    height:450px;
-    background:red;
-    border-radius:50%;
+.hero h1 {
+    font-size: clamp(40px, 7vw, 70px);
 }
 
-.big-heart::before{
-    top:-225px;
-    left:0;
+.hero h1 span {
+    color: var(--green);
 }
 
-.big-heart::after{
-    left:225px;
-    top:0;
+.hero h2 {
+    color: #a8c5ad;
+    margin: 10px 0;
+    font-size: 22px;
 }
 
-.show{
-    animation:zoom 0.8s forwards;
+.hero p {
+    color: var(--text);
+    max-width: 650px;
+    margin-top: 15px;
 }
 
-@keyframes zoom{
-    from{ transform:translate(-50%,-50%) rotate(-45deg) scale(0); }
-    to{ transform:translate(-50%,-50%) rotate(-45deg) scale(1); }
+.btn {
+    display: inline-block;
+    width: fit-content;
+    margin-top: 28px;
+    padding: 12px 25px;
+    border: 1px solid var(--green);
+    border-radius: 5px;
+    color: var(--green);
+    text-decoration: none;
+    transition: 0.3s;
 }
 
-/* 💖 TEXT */
-.heart-text{
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%) rotate(45deg);
-    width:300px;
-    font-size:34px;
-    font-weight:bold;
-    text-align:center;
-    line-height:1.6;
-    color:white;
-    z-index:5;
+.btn:hover {
+    background: var(--green);
+    color: black;
 }
 
-/* buttons */
-#clickBtn, #photoBtn{
-    display:none;
-    position:absolute;
-    left:50%;
-    transform:translateX(-50%);
-    padding:15px 25px;
-    font-size:20px;
-    background:white;
-    color:black;
-    border:none;
-    border-radius:10px;
-    cursor:pointer;
+section {
+    padding: 75px 10%;
 }
 
-#clickBtn{ top:75%; }
-#photoBtn{ top:85%; }
-
-/* FINAL MESSAGE */
-#finalMsg{
-    display:none;
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    width:95%;
-    max-width:500px;
-    padding:25px;
-    background:rgba(255,0,80,0.15);
-    border:2px solid rgba(255,255,255,0.3);
-    border-radius:20px;
-    backdrop-filter:blur(8px);
-    font-size:22px;
+.section-title {
+    color: var(--green);
+    font-size: 30px;
+    margin-bottom: 30px;
 }
 
-/* PHOTOS */
-#gallery{
-    display:none;
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
+.about-text {
+    color: var(--text);
+    max-width: 850px;
 }
 
-#gallery img{
-    width:360px;
-    height:360px;
-    border-radius:20px;
-    display:none;
-    box-shadow:0 0 30px white;
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 20px;
 }
 
-/* 🔥 FINAL TEXT */
-#endText{
-    position:absolute;
-    bottom:-60px;
-    width:100%;
-    text-align:center;
-    font-size:32px;
-    font-weight:bold;
-    color:white;
-    text-shadow:0 0 25px pink;
-    display:none;
+.card {
+    background: var(--dark);
+    border: 1px solid #1c4729;
+    padding: 24px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: var(--green);
+    box-shadow: 0 0 15px #39ff1420;
+}
+
+.card h3 {
+    color: var(--green);
+    margin-bottom: 12px;
+}
+
+.card p {
+    color: var(--text);
+    font-size: 14px;
+}
+
+.tag {
+    display: inline-block;
+    background: #142c1b;
+    color: var(--green);
+    padding: 5px 12px;
+    margin: 5px 3px;
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+.project-number {
+    color: var(--green);
+    font-family: monospace;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+ul {
+    padding-left: 20px;
+    color: var(--text);
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+.contact-box {
+    background: #0b1510;
+    border: 1px solid #245532;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.contact-box a {
+    color: var(--green);
+    text-decoration: none;
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    color: #829588;
+    border-top: 1px solid #183d25;
+    font-size: 13px;
+}
+
+@media(max-width: 600px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav {
+        justify-content: center;
+        gap: 12px;
+    }
+
+    nav a {
+        font-size: 12px;
+    }
+
+    .hero {
+        padding: 75px 7%;
+    }
+
+    section {
+        padding: 55px 7%;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<div id="startHeart" onclick="startOpen()">💖</div>
+<header>
+    <div class="logo">DIVYA.S</div>
 
-<div id="hey">Hey Maran 💖</div>
-<div id="msg">❤️ Touch the heart... I have a surprise 😍</div>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#internships">Internships</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
 
-<div id="letter" class="letter" onclick="openLetter()">💌</div>
+<!-- HOME -->
 
-<div id="bigHeart" class="big-heart">
-    <div id="text" class="heart-text"></div>
+<div class="hero" id="home">
+
+    <div class="terminal">
+        root@divya:~$ whoami
+    </div>
+
+    <h1>Hello, I'm <span>Divya</span></h1>
+
+    <h2>Aspiring Cyber Security Professional</h2>
+
+    <p>
+        B.E. Computer Science and Engineering
+        (Cyber Security) student passionate about
+        Cyber Security, Ethical Hacking and Web Development.
+        Exploring technology, solving CTF challenges
+        and continuously learning new skills.
+    </p>
+
+    <a href="#about" class="btn">
+        Explore My Portfolio →
+    </a>
+
 </div>
 
-<button id="clickBtn" onclick="showFinal()">Click Here 💙</button>
-<button id="photoBtn" onclick="showPhotos()">See Memories 📸</button>
+<!-- ABOUT -->
 
-<div id="finalMsg">
-<h3>💖 Special Message 💖</h3>
+<section id="about">
 
-In college, the best person I got is you Maran ❤<br><br>
-I like you a lot 😇 thank you for being a good friend 🙂<br><br>
-You will reach big success. God is always with you ❤️<br><br>
-I will never forget you... Happy Birthday 🦇 Batman ❤️
-</div>
+    <h2 class="section-title">01. About Me</h2>
 
-<div id="gallery">
-<img id="img1" src="https://i.postimg.cc/vZYdN0kV/file-00000000f6c872069c1de9cd9c518c1e.jpg">
-<img id="img2" src="https://i.postimg.cc/vZYdN0kV/file-00000000f6c872069c1de9cd9c518c1e.jpg">
-<img id="img3" src="https://i.postimg.cc/vZYdN0kV/file-00000000f6c872069c1de9cd9c518c1e.jpg">
+    <p class="about-text">
+        I am a third-year Computer Science and Engineering
+        student specializing in Cyber Security at New Prince
+        Shri Bhavani College of Engineering and Technology.
 
-<div id="endText">💖 Once again Happy Birthday Maran ❤️</div>
-</div>
+        I have completed web development internships and
+        worked on website development projects. I am
+        interested in cybersecurity, ethical hacking,
+        digital forensics and security research.
 
-<script>
+        My goal is to improve my technical knowledge
+        and grow as a cybersecurity professional.
+    </p>
 
-function startOpen(){
-    document.getElementById("startHeart").style.display="none";
-    document.getElementById("hey").style.display="block";
-    document.getElementById("msg").style.display="block";
-}
+</section>
 
-/* BIG hearts */
-function createHeart(){
-    let h=document.createElement("div");
-    h.className="heart";
-    h.innerHTML="❤️";
-    h.style.left=Math.random()*100+"vw";
-    h.onclick = stopFlow;
-    document.body.appendChild(h);
-    setTimeout(()=>h.remove(),6000);
-}
-setInterval(createHeart,200);
+<!-- SKILLS -->
 
-function stopFlow(){
-    document.getElementById("msg").style.display="none";
-    document.getElementById("letter").style.display="block";
-}
+<section id="skills">
 
-let text="💖 Happy Birthday\nMaran ❤️\n\n🦇 Cutey Batmaran 🦇";
-let i=0;
+    <h2 class="section-title">02. Technical Skills</h2>
 
-function type(){
-    let t=document.getElementById("text");
-    if(i<text.length){
-        t.innerHTML += text[i]==="\n"?"<br>":text[i];
-        i++;
-        setTimeout(type,50);
-    }else{
-        document.getElementById("clickBtn").style.display="block";
-    }
-}
+    <div class="grid">
 
-function openLetter(){
-    document.getElementById("letter").style.display="none";
-    let h=document.getElementById("bigHeart");
-    h.style.display="block";
-    h.classList.add("show");
-    type();
-}
+        <div class="card">
+            <h3>Programming</h3>
+            <p>Python Basics</p>
+            <span class="tag">Python</span>
+        </div>
 
-function showFinal(){
-    document.getElementById("bigHeart").style.display="none";
-    document.getElementById("clickBtn").style.display="none";
-    document.getElementById("finalMsg").style.display="block";
-    document.getElementById("photoBtn").style.display="block";
-}
+        <div class="card">
+            <h3>Web Development</h3>
+            <p>Front-End Development</p>
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JavaScript</span>
+        </div>
 
-function showPhotos(){
-    document.getElementById("finalMsg").style.display="none";
-    document.getElementById("photoBtn").style.display="none";
-    document.getElementById("gallery").style.display="block";
+        <div class="card">
+            <h3>Cyber Security</h3>
+            <p>Cyber Security Fundamentals</p>
+            <span class="tag">Kali Linux</span>
+        </div>
 
-    let imgs=["img1","img2","img3"];
-    let index=0;
+        <div class="card">
+            <h3>Tools & Networking</h3>
+            <p>Wireshark and Networking Fundamentals</p>
+        </div>
 
-    function slide(){
-        imgs.forEach(id=>document.getElementById(id).style.display="none");
-        document.getElementById(imgs[index]).style.display="block";
+    </div>
 
-        if(index === imgs.length - 1){
-            document.getElementById("endText").style.display="block";
-        }
+</section>
 
-        index=(index+1)%imgs.length;
-    }
+<!-- CTF -->
 
-    slide();
-    setInterval(slide,2500);
-}
+<section id="ctf">
 
-</script>
+    <h2 class="section-title">03. CTF Experience</h2>
+
+    <div class="card">
+
+        <h3>Capture The Flag (CTF)</h3>
+
+        <p>
+            Participated in four CTF events and explored
+            different cybersecurity challenges.
+        </p>
+
+        <br>
+
+        <span class="tag">Cryptography</span>
+        <span class="tag">OSINT</span>
+        <span class="tag">Digital Forensics</span>
+        <span class="tag">Reverse Engineering</span>
+        <span class="tag">Metasploit</span>
+
+        <p style="margin-top:15px">
+            Gained practical exposure to cybersecurity
+            concepts through CTF activities.
+        </p>
+
+    </div>
+
+</section>
+
+<!-- INTERNSHIPS -->
+
+<section id="internships">
+
+    <h2 class="section-title">04. Internship Experience</h2>
+
+    <div class="grid">
+
+        <div class="card">
+
+            <h3>Eagle Hitech</h3>
+
+            <p><b>Web Development Intern</b></p>
+
+            <p>
+                Successfully completed a Web Development
+                Internship and received an internship certificate.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h3>InAmigos</h3>
+
+            <p><b>Web Developer Intern</b></p>
+
+            <p>
+                Completed internship tasks through Internshala
+                and worked on a Cyber Security Awareness
+                Website for a foundation.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- PROJECTS -->
+
+<section id="projects">
+
+    <h2 class="section-title">05. Projects</h2>
+
+    <div class="grid">
+
+        <div class="card">
+
+            <div class="project-number">PROJECT 01</div>
+
+            <h3>Cyber Security Awareness Website</h3>
+
+            <p>
+                Created a website for a foundation to spread
+                awareness about cybersecurity and online safety.
+                Used Canva during the design process.
+            </p>
+
+            <span class="tag">Canva</span>
+            <span class="tag">HTML</span>
+
+        </div>
+
+        <div class="card">
+
+            <div class="project-number">PROJECT 02</div>
+
+            <h3>Personal Portfolio Website</h3>
+
+            <p>
+                Designed and developed a responsive personal
+                portfolio website to showcase technical skills,
+                projects and professional information.
+            </p>
+
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JavaScript</span>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- CERTIFICATIONS -->
+
+<section id="certifications">
+
+    <h2 class="section-title">06. Certifications</h2>
+
+    <div class="card">
+
+        <ul>
+            <li>Python for Everybody – Coursera (Ongoing)</li>
+            <li>Cyber Security Fundamentals – Online Course</li>
+            <li>Web Development Internship – Eagle Hitech</li>
+            <li>CTF Participation Certificates – Four Events</li>
+        </ul>
+
+    </div>
+
+</section>
+
+<!-- EDUCATION -->
+
+<section id="education">
+
+    <h2 class="section-title">07. Education</h2>
+
+    <div class="card">
+
+        <h3>B.E. Computer Science and Engineering</h3>
+
+        <p>Specialization: Cyber Security</p>
+
+        <p>New Prince Shri Bhavani College of Engineering and Technology</p>
+
+        <p>2024 – 2028</p>
+
+        <p style="color:#39ff14">
+            Current CGPA: 8.50
+        </p>
+
+    </div>
+
+</section>
+
+<!-- ACTIVITIES -->
+
+<section id="activities">
+
+    <h2 class="section-title">08. Leadership & Activities</h2>
+
+    <div class="card">
+
+        <ul>
+            <li>Join Secretary – College Symposium</li>
+            <li>Treasure Hunt Coordinator – College Symposium</li>
+            <li>Hackathon Technical Coordinator – College Symposium</li>
+        </ul>
+
+    </div>
+
+</section>
+
+<!-- CONTACT -->
+
+<section id="contact">
+
+    <h2 class="section-title">09. Contact</h2>
+
+    <div class="contact-box">
+
+        <p>Interested in learning, technology and collaboration.</p>
+
+        <p style="margin-top:15px">
+            GitHub:
+            <a href="https://github.com/" target="_blank">
+                Add your GitHub profile link
+            </a>
+        </p>
+
+        <p>
+            LinkedIn:
+            <a href="https://linkedin.com/" target="_blank">
+                Add your LinkedIn profile link
+            </a>
+        </p>
+
+        <p>Email: Add your professional email</p>
+
+    </div>
+
+</section>
+
+<footer>
+
+    <p>© 2026 Divya Srinivasan</p>
+
+    <p style="color:#39ff14">
+        Learning Today. Securing Tomorrow.
+    </p>
+
+</footer>
 
 </body>
 </html>
